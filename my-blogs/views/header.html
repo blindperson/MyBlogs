@@ -1,0 +1,50 @@
+<style type="text/css">
+    body{
+        margin: 0;
+    }
+    header{
+        background-color: cyan;
+
+    }
+    #nav-bar ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    #nav-bar ul li{
+        margin: 0 50px;
+        line-height: 80px;
+    }
+    .high-lighted{
+        background-color: yellow;
+        border-radius: 5px;
+        padding:10px;
+    }
+</style>
+<header>
+    <nav id="nav-bar">
+        <ul>
+            <li><a href="/" class='{{location == "index"?"high-lighted":""}}'>首页</a></li>
+            <li><a href="/tag" class='{{location == "tag"?"high-lighted":""}}'>标签</a></li>
+            {{if user}}
+            <li><a href="/publish" class='{{location == "publish"?"high-lighted":""}}'>发帖</a></li>
+            <li><a href="/logout" onclick="logoutClick(event);">退出登录</a></li>
+            <li>{{user.account}}</li>
+            {{else}}
+            <!-- 未登录 -->
+                <li><a href="/login" class='{{location == "login"?"high-lighted":""}}'>登陆</a></li>
+                <li><a href="/register" class='{{location == "register"?"high-lighted":""}}'>注册</a></li>
+            {{/if}}
+        </ul>
+    </nav>
+</header>
+<script>
+    function logoutClick(e){
+        var sure = confirm("确定退出吗？?");
+        if (!sure) {
+            e.preventDefault();
+        } 
+    }
+</script>
+    

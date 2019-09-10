@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <style>
+        .blog-list{
+            width: 800px;
+            margin: 0 auto;
+        }
+        p.content{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导入另一个模板 -->
+    {{include "./header.html"}}
+    <main>
+        <div class="blog-list">
+            <h1>欢迎来到我的博客</h1>
+            {{each blogs blog}}
+            <div class="blog-box">
+                <h3><a href="/blog?_id={{blog.id}}">{{blog.title}}</a></h3>
+                <a href="/search?author={{blog.author.id}}&zuozhe={{blog.author.account}}">作者:{{blog.author.account}}</a><b>&emsp;|&emsp;</b>
+                <span>{{blog.timeInfo}}</span><b>&emsp;|&emsp;</b>
+                {{each blog.tagInfo tag}}
+                <a href="/search?tag={{tag}}">{{tag}}</a>
+                {{/each}}
+                <!-- 在主页的右上角固定定位一个输入框，输入内容查找有关内容的所有博客 -->
+                <p class="content">{{blog.content}}</p>
+                <span>浏览:{{blog.readCount}}</span><b>&emsp;|&emsp;</b>
+                <span>回复:{{blog.reply.length}}</span>
+            </div>
+            <hr>
+            {{/each}}
+        </div>
+    </main>
+
+</body>
+</html>

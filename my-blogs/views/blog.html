@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+</head>
+<body>
+    {{include "./header.html"}}
+
+    <h3>{{blog.title}}</h3>
+    <p>{{blog.author.account}}</p>
+    <p>{{blog.timeInfo}}</p>
+    <p>{{blog.content}}</p>
+
+    <!-- 自己可以删除自己的博客 -->
+    {{if user&&(blog.author._id == user._id)}}
+    <a href="/delete?_id={{blog.id}}">删除本片博客</a>
+    <br>
+    {{/if}}
+
+    <!-- 回帖列表 -->
+    {{each blog.reply re}}
+    <div style="border-bottom: 1px dashed black; margin:50px 0;">
+        <p>{{re.nickname}}</p>
+        <p>{{re.timeInfo}}</p>
+        <p>{{re.content}}</p>
+    </div>
+    {{/each}}
+
+    <hr>
+    <!-- 回帖表单 -->
+    <form action="/reply?_id={{blog.id}}" method="post">
+        {{if !user}}
+            <label for="nickname">昵称</label>
+            <input type="text" name="nickname" id="nickname" placeholder="游客">
+            <br>
+        {{/if}}
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
+        <br>
+        <input type="submit" value="评论">
+    </form>
+</body>
+</html>

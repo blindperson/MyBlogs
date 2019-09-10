@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+</head>
+<body>
+    <!-- 导入另一个模板 -->
+    {{include "./header.html"}}
+
+    <h1>按照<span>
+        {{if condition.zuozhe}}
+            {{condition.zuozhe}}
+        {{/if}}
+        {{if condition.tag}}
+            {{condition.tag}}
+        {{/if}}
+    </span>搜索的结果是</h1>
+
+    {{each data blog}}
+    <p><a href="/blog?_id={{blog.id}}">{{blog.title}}</a></p>
+    {{/each}}
+</body>
+</html>

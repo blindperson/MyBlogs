@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <!-- 导入另一个模板 -->
+        {{include "./header.html"}}
+
+        <!-- 提示 -->
+        {{if tip}}
+            <p style="color: red;">{{tip}}</p>
+        {{/if}}
+
+        <h1>注册页面</h1>
+        <!-- 提交注册表单 -->
+        <form action="/register" method="post" onsubmit="registerClick(event);">
+            <label for="account">账&emsp;&emsp;号:</label>
+            <input type="text" id="account" name="account" required pattern="[\w]{3,}" placeholder="请输入账号">
+            <br>
+            <label for="password">密&emsp;&emsp;码:</label>
+            <input type="password" id="password" name="password" required pattern="[\w]{3,}" placeholder="请输入密码">
+            <br>
+            <label for="repassword">确认密码:</label>
+            <input type="password" id="repassword" required pattern="[\w]{3,}" placeholder="请再次输入密码">
+            <br>
+            <label for="email">邮&emsp;&emsp;箱:</label>
+            <input type="email" id="email" name="email" required placeholder="请输入邮箱">
+            <br>
+            <input type="submit" value="注册">
+        </form>
+    </body>
+    <script>
+        function registerClick(e){
+            var password = document.getElementById("password");
+            var repassword = document.getElementById("repassword");
+            if (password.value != repassword.value) {
+                alert("两次输入的密码不一致");
+                e.preventDefault();
+            }
+        }
+    </script>
+</html>

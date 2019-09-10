@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <!-- 导入另一个模板 -->
+        {{include "./header.html"}}
+
+        <!-- 提示 -->
+        {{if tip}}
+            <p style="color: red;">{{tip}}</p>
+        {{/if}}
+
+        <h1>登陆页面</h1>
+            <!-- 提交登陆表单 -->
+            <form action="/login" method="post">
+                <label for="account">账&emsp;&emsp;号:</label>
+                <input type="text" id="account" name="account" required pattern="[\w]{3,}" placeholder="请输入账号">
+                <br>
+                <label for="password">密&emsp;&emsp;码:</label>
+                <input type="password" id="password" name="password" required pattern="[\w]{3,}" placeholder="请输入密码">
+                <br>
+                <input type="submit" value="登陆">
+            </form>
+
+    </body>
+</html>

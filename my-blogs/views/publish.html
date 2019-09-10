@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <style>
+       .publish-box{
+           width: 800px;
+           margin: 0 auto;
+       }
+       .publish-box input{
+           width: 100%;
+       }
+       .publish-box textarea{
+           resize: none;
+           width: 100%;
+       }
+    </style>
+</head>
+<body>
+    <!-- 导入另一个模板 -->
+    {{include "./header.html"}}
+
+    <!-- 发帖 -->
+    <main>
+        <div class="publish-box">
+            <h1>发布新的博客</h1>
+            <form action="/publish" method="post">
+                <label for="title">标题:</label>
+                <input type="text" id="title" name="title" required>
+                <br> <br>
+                <label for="tag">标签(多个标签以空格隔开):</label>
+                <input type="text" id="tag" name="tag">
+                <br> <br>
+                <label for="content">内容:</label>
+                <textarea name="content" id="content" cols="30" rows="5" required></textarea>
+                <br> <br>
+                <input type="submit" value="发布">
+            </form>
+        </div>
+    </main>
+</body>
+</html>
